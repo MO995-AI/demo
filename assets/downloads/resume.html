@@ -85,9 +85,21 @@
   .quote { margin-top: 1.8mm; padding: 2.6mm 3.2mm; background: #f7f4ec; border-left: 1.6px solid #c19a3f; font-size: 7.8pt; line-height: 1.65; color: #4a4b53; }
   .quote b { color: #17181c; }
   .site {
-    margin-top: 2.6mm; font-size: 7.4pt; letter-spacing: .02em; color: #6a6b72;
+    margin-top: 2.8mm;
+    padding: 0 3.2mm;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0;
+    font-size: 8.6pt;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    color: #6a6b72;
   }
-  .site a { color: #17181c; text-decoration: none; border-bottom: 1px solid #c19a3f; }
+  .site a {
+    color: #17181c; text-decoration: none; white-space: nowrap;
+    border-bottom: 1px solid #c19a3f;
+  }
 
   .idx { display: flex; align-items: baseline; gap: 3mm; padding: 1.05mm 0; border-bottom: 1px solid #ece8dd; }
   .idx:last-child { border-bottom: 0; }
@@ -122,6 +134,7 @@
       <div><span class="k">TEL</span><b>17362275882</b></div>
       <div><span class="k">MAIL</span>1953324609@qq.com</div>
       <div><span class="k">CITY</span>南京 · 苏州 · 上海 · 杭州 · 济南</div>
+      <div><span class="k">SITE</span>zhouxiyang.cn</div>
       <div><span class="k">STATUS</span>2027 届 · 可实习</div>
     </div>
   </header>
