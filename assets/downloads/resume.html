@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>简历 · 周西阳 · 游戏策划</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #e9e6df; }
+  body {
+    font-family: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    color: #17181c;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 10mm 15mm 8mm;
+    background: #fdfcf9;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  @media screen {
+    body { padding: 18px 0; }
+    .page { box-shadow: 0 20px 60px rgba(0,0,0,.18); }
+  }
+
+  .hd { display: flex; justify-content: space-between; align-items: flex-start; gap: 10mm; }
+  .hd__name { font-size: 25pt; font-weight: 700; letter-spacing: .06em; line-height: 1.05; color: #111216; }
+  .hd__role {
+    margin-top: 2.4mm; font-family: "Consolas", "JetBrains Mono", monospace;
+    font-size: 7.6pt; letter-spacing: .2em; color: #9a7a2e; text-transform: uppercase;
+  }
+  .hd__tagline { margin-top: 2.6mm; font-size: 8.4pt; color: #55565e; line-height: 1.6; max-width: 88mm; }
+  .hd__intent { font-size: 10.4pt; font-weight: 700; color: #111216; letter-spacing: .01em; }
+  .hd__intent-note { font-size: 8.4pt; color: #55565e; }
+  .hd__contact { text-align: right; font-size: 8.1pt; line-height: 1.85; color: #3c3d45; }
+  .hd__contact b { color: #111216; font-weight: 600; }
+  .hd__contact .k { color: #96979f; font-family: "Consolas", monospace; font-size: 7pt; letter-spacing: .08em; margin-right: 2.5mm; }
+  .rule { height: 1px; background: #23242a; margin: 4.5mm 0 0; opacity: .85; }
+
+  .body { display: grid; grid-template-columns: 1fr 56mm; gap: 9mm; margin-top: 2.8mm; }
+  .main { min-width: 0; }
+  .side { min-width: 0; }
+
+  h2.sec {
+    display: flex; align-items: baseline; gap: 3mm;
+    margin: 3.6mm 0 2mm; font-size: 9.4pt; font-weight: 700; letter-spacing: .08em; color: #111216;
+  }
+  h2.sec .no { font-family: "Consolas", monospace; font-size: 6.6pt; letter-spacing: .1em; color: #b08a35; font-weight: 400; }
+  h2.sec::after { content: ""; flex: 1; height: 1px; background: #e2ded3; transform: translateY(-1px); }
+
+  .entry { margin-bottom: 2.1mm; page-break-inside: avoid; }
+  .entry__top { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+  .entry__title { font-size: 9.4pt; font-weight: 700; color: #14151a; letter-spacing: .01em; }
+  .entry__title span { font-weight: 400; color: #77787f; font-size: 7.5pt; margin-left: 1.8mm; letter-spacing: .02em; }
+  .entry__date { font-family: "Consolas", monospace; font-size: 7pt; color: #8a8b92; white-space: nowrap; }
+  .entry__meta { margin-top: .7mm; font-size: 7.4pt; color: #9a7a2e; letter-spacing: .02em; }
+  .entry ul { margin: 1mm 0 0; padding: 0; }
+  .entry li {
+    position: relative; padding-left: 3.2mm; margin-bottom: .55mm;
+    font-size: 7.9pt; line-height: 1.62; color: #3a3b42;
+  }
+  .entry li::before { content: "▪"; position: absolute; left: 0; top: -.2mm; color: #c19a3f; font-size: 6pt; }
+  .entry li b { color: #17181c; font-weight: 600; }
+  .entry li .num { font-family: "Consolas", monospace; font-size: 7.3pt; color: #17181c; }
+
+  .edu { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+  .edu + .edu, .edu__line + .edu { margin-top: 2.4mm; }
+  .edu__school { font-size: 9.2pt; font-weight: 700; color: #14151a; }
+  .edu__school span { font-weight: 400; font-size: 8pt; color: #55565e; margin-left: 2mm; }
+  .edu__date { font-family: "Consolas", monospace; font-size: 7pt; color: #8a8b92; }
+  .edu__line { margin-top: .8mm; font-size: 7.4pt; color: #62636b; line-height: 1.55; }
+
+  .side h2.sec { margin-top: 3.4mm; }
+  .skill { margin-bottom: 2.3mm; }
+  .skill__k { font-family: "Consolas", monospace; font-size: 6.6pt; letter-spacing: .14em; color: #a98430; text-transform: uppercase; margin-bottom: .7mm; }
+  .skill__v { font-size: 7.4pt; line-height: 1.55; color: #3a3b42; }
+  .chips { display: flex; flex-wrap: wrap; gap: 1.3mm; margin-top: .5mm; }
+  .chip { padding: .6mm 1.9mm; border: 1px solid #e0dbcf; border-radius: 1mm; font-size: 6.9pt; color: #4a4b53; background: #f7f4ec; }
+
+  .quote { margin-top: 1.8mm; padding: 2.6mm 3.2mm; background: #f7f4ec; border-left: 1.6px solid #c19a3f; font-size: 7.8pt; line-height: 1.65; color: #4a4b53; }
+  .quote b { color: #17181c; }
+  .site {
+    margin-top: 2.6mm; font-size: 7.4pt; letter-spacing: .02em; color: #6a6b72;
+  }
+  .site a { color: #17181c; text-decoration: none; border-bottom: 1px solid #c19a3f; }
+
+  .idx { display: flex; align-items: baseline; gap: 3mm; padding: 1.05mm 0; border-bottom: 1px solid #ece8dd; }
+  .idx:last-child { border-bottom: 0; }
+  .idx__k {
+    flex: none; width: 15mm; font-family: "Consolas", monospace; font-size: 6.5pt;
+    letter-spacing: .08em; color: #a98430;
+  }
+  .idx__t { flex: 1; font-size: 8.1pt; color: #1d1e24; font-weight: 600; }
+  .idx__t span { font-weight: 400; color: #77787f; }
+  .idx__m { flex: none; font-family: "Consolas", monospace; font-size: 6.8pt; color: #9a9992; }
+
+  .foot {
+    margin-top: auto;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid #e2ded3; padding-top: 1.8mm;
+    font-family: "Consolas", monospace; font-size: 6.4pt; letter-spacing: .12em; color: #a6a49b;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hd">
+    <div>
+      <div class="hd__name">周西阳</div>
+      <div class="hd__role">Game Designer · 2027</div>
+      <div class="hd__tagline">
+        <span class="hd__intent">求职意向：游戏策划</span><span class="hd__intent-note">（系统与关卡方向）</span>。擅长把一个「好玩的感觉」拆成可验证的规则，
+        再用完整文档、可跑原型和 AI 快速验证来证明它成立。
+      </div>
+    </div>
+    <div class="hd__contact">
+      <div><span class="k">TEL</span><b>17362275882</b></div>
+      <div><span class="k">MAIL</span>1953324609@qq.com</div>
+      <div><span class="k">CITY</span>南京 · 苏州 · 上海 · 杭州 · 济南</div>
+      <div><span class="k">STATUS</span>2027 届 · 可实习</div>
+    </div>
+  </header>
+  <div class="rule"></div>
+
+  <div class="body">
+    <main class="main">
+      <h2 class="sec"><span class="no">01</span>教育背景</h2>
+      <div class="edu">
+        <div class="edu__school">南京传媒学院<span>数字媒体技术 · 本科</span></div>
+        <div class="edu__date">2025.09 — 2027.06</div>
+      </div>
+      <div class="edu__line">
+        GPA 3.8 / 4.0 · 主修：游戏引擎开发、虚拟现实、UI 交互、数字媒体项目设计
+      </div>
+
+      <div class="edu">
+        <div class="edu__school">苏州职业技术大学<span>动漫制作技术 · 专科</span></div>
+        <div class="edu__date">2022.09 — 2025.06</div>
+      </div>
+      <div class="edu__line">
+        GPA 3.78 / 4.0 · 主修：MAYA 动画、三维建模、角色与场景设计、影视特效与剪辑
+      </div>
+
+      <h2 class="sec"><span class="no">02</span>项目经历</h2>
+
+      <div class="entry">
+        <div class="entry__top">
+          <div class="entry__title">《山羊赌局》<span>Sheepie Fairy Tale · 完整 GDD</span></div>
+          <div class="entry__date">2026.06 — 2026.10</div>
+        </div>
+        <div class="entry__meta">第一人称 3D 卡牌 · 主策划 / 系统 / 数值 · 独立完成 · Godot 4</div>
+        <ul>
+          <li>确立「<b>零 UI、全程实体演出</b>」的第一人称赌桌：所有状态都在桌面、角色和声音里，一局约 15 分钟。</li>
+          <li>把「信息差 → 下注 → 揭示」写成可执行的核心循环，用 <b>10 张验证卡 → 24 张商品卡</b>的路径控制内容成本。</li>
+          <li>用 <b>32 条 DoD</b> 把 16 周拆成可验收里程碑，完成 <span class="num">22</span> 章 / <span class="num">62</span> 表 / <span class="num">12</span> 图的全套文档。</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry__top">
+          <div class="entry__title">《恶魔轮盘》系统拆解<span>竞品拆解 · 14 章 / 13 表</span></div>
+          <div class="entry__date">2026.05</div>
+        </div>
+        <div class="entry__meta">独立完成 · 规则还原 / 信息设计 / 商业结果</div>
+        <ul>
+          <li>用「<b>回合—弹仓—局</b>」三层时间单位还原规则骨架，解释 8 发弹仓与 3 类道具如何把运气切成可管理的碎片。</li>
+          <li>从「知道总量、不知道顺序」的信息结构，拆出「<b>打自己反而划算</b>」的反直觉决策与 30 分钟情绪曲线。</li>
+          <li>把销量、价格、时长和评价放在同一条商业链上，区分官方口径与社区推测，<b>每条结论标注证据等级</b>。</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry__top">
+          <div class="entry__title">《部落神话 Tribal Myth》<span>直播互动 2–5 阵营战争 · 策划案 + 原型</span></div>
+          <div class="entry__date">2024.05</div>
+        </div>
+        <div class="entry__meta">主策划 / 系统 &amp; 关卡 · 校园 Game Jam 第一名 · Unity</div>
+        <ul>
+          <li>设计「<b>主播当局、观众入局</b>」的直播战争：观众通过指令加入阵营、指定坐标、加速生成族人，一局 15–20 分钟。</li>
+          <li>用「信仰—族人—营地—出征」四层循环把直播互动收回策略，而不是让游戏退化成弹幕抽奖。</li>
+          <li>48 小时内交付可玩 Unity 原型与 <span class="num">20</span> 章设计表，获校园 Game Jam <b>第一名</b>。</li>
+        </ul>
+      </div>
+
+      <h2 class="sec"><span class="no">03</span>荣誉与证书</h2>
+      <div class="entry">
+        <ul>
+          <li>2024 江苏省职业技能大赛「数字化产品设计与开发」<b>二等奖</b></li>
+          <li>2023 全国大学生数学建模竞赛 <b>江苏赛区二等奖</b></li>
+          <li>2023 第二十届高等数学竞赛 <b>三等奖</b></li>
+          <li>2025 届苏州职业技术大学「<b>优秀毕业生</b>」</li>
+        </ul>
+      </div>
+
+      <h2 class="sec"><span class="no">04</span>作品集索引</h2>
+      <div class="idx">
+        <span class="idx__k">01 TEARDOWN</span>
+        <span class="idx__t">拆解案 <span>《恶魔轮盘》系统拆解</span></span>
+        <span class="idx__m">14 章 · 13 表</span>
+      </div>
+      <div class="idx">
+        <span class="idx__k">02 DESIGN</span>
+        <span class="idx__t">策划案 <span>《山羊赌局》完整 GDD /《部落神话》直播战争</span></span>
+        <span class="idx__m">2 篇 · 2.3 万字</span>
+      </div>
+      <div class="idx">
+        <span class="idx__k">03 PLAYABLE</span>
+        <span class="idx__t">游戏 Demo <span>《山羊赌局》《部落神话》可玩构建</span></span>
+        <span class="idx__m">Windows · 2 个</span>
+      </div>
+      <div class="idx">
+        <span class="idx__k">04 BUSINESS</span>
+        <span class="idx__t">商业表现 <span>Steam 审核中 / Game Jam 第一名</span></span>
+        <span class="idx__m">待上线</span>
+      </div>
+    </main>
+
+    <aside class="side">
+      <h2 class="sec"><span class="no">05</span>技能</h2>
+
+      <div class="skill">
+        <div class="skill__k">Design</div>
+        <div class="skill__v">系统 / 数值 / 关卡 / GDD 写作</div>
+        <div class="chips">
+          <span class="chip">Excel 数值</span><span class="chip">Godot 4</span><span class="chip">Xmind</span>
+          <span class="chip">AI 原型</span>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill__k">Engine</div>
+        <div class="skill__v">Godot 4（GDScript）、Unity（C# 基础）、可玩原型与关卡搭建</div>
+      </div>
+
+      <div class="skill">
+        <div class="skill__k">AI</div>
+        <div class="skill__v">熟练使用对话模型与生成式工具，能写清 Prompt 与验收标准，快速完成玩法原型与文档初稿。</div>
+      </div>
+
+      <div class="skill">
+        <div class="skill__k">Data</div>
+        <div class="skill__v">Excel 数值建模、留存 / 漏斗分析、用表格验证经济与节奏假设</div>
+      </div>
+
+      <div class="skill">
+        <div class="skill__k">Soft</div>
+        <div class="skill__v">长文档写作、用户测试组织、跨职能沟通、快速迭代</div>
+      </div>
+
+      <h2 class="sec"><span class="no">06</span>游戏研究</h2>
+      <div class="skill__v">
+        长期做机制拆解与 GDD 写作，覆盖卡牌赌局、直播互动、策略与叙事游戏；
+        持续输出拆解长文，关注「规则如何制造情绪」。
+      </div>
+
+      <div class="quote">
+        <b>设计观：</b>好设计不是让玩家觉得设计师聪明，
+        而是让玩家在某个瞬间觉得自己聪明。
+      </div>
+      <p class="site">个人作品集网址：<a href="https://zhouxiyang.cn">zhouxiyang.cn</a></p>
+    </aside>
+  </div>
+</div>
+</body>
+</html>
