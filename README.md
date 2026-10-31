@@ -31,8 +31,8 @@ python -m http.server 8000
 | `work-roulette.html` | 拆解案《恶魔轮盘》：14 章 / 13 表 / 3 图 | 左目录固定、阅读进度、图片放大 |
 | `work-goat.html` | 策划案《山羊赌局》：22 章 / 80 节 / 62 表 / 12 图 | 同上 |
 | `work-tribe.html` | 策划案《部落神话》：20 章 / 39 节 / 41 表 / 8 图 | 同上 |
-| `assets/downloads/sheepie-fairy-tale-demo.zip` | 山羊赌局 Demo（Windows，单文件 exe，约 167 MB） | 下载 |
-| `assets/downloads/tribal-myth-demo.zip` | 部落神话 Demo（Windows，Unity 构建，约 92 MB） | 下载 |
+| `assets/downloads/sheepie-fairy-tale-demo.zip` | 山羊赌局 Demo（Windows，单文件 exe，约 167 MB；线上由 OSS 提供，见 7.5） | 下载 |
+| `assets/downloads/tribal-myth-demo.zip` | 部落神话 Demo（Windows，Unity 构建，约 92 MB；线上由 OSS 提供，见 7.5） | 下载 |
 | `assets/downloads/resume.pdf` | 一页简历（A4） | 下载 / 打印 |
 
 商业表现按《修改.md》要求暂不单独成页，只在主页矩阵第 4 列记录当前状态：
@@ -151,10 +151,10 @@ Website/
 
 ```powershell
 & 'C:\Users\dell\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe' build\package_site.py
-# 产物：dist\（42 个文件，约 183 MB，含两个 Demo 包）
+# 产物：dist\（41 个文件，约 2.5 MB；两个 Demo 由 OSS 提供，默认不打包）
 
-& 'C:\Users\dell\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe' build\package_site.py --no-demos
-# 不含 zip，约 2 MB，适合有单文件大小限制的托管
+& 'C:\Users\dell\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe' build\package_site.py --with-demos
+# 连同两个 zip 一起打包（约 183 MB），仅用于自建服务器/本地归档
 ```
 
 本地检查：
@@ -172,28 +172,31 @@ Website/
 4. **Rules → Redirect Rules**：`www.zhouxiyang.cn/*` → `https://zhouxiyang.cn/$1`，301；
 5. HTTPS 证书自动签发。
 
-注意：Cloudflare Pages **单文件上限 25 MB**，两个 zip 传不上去。二选一：
+注意：两个 Demo 已托管在阿里云 OSS，`dist/` 只有约 2.5 MB，可直接上传 Cloudflare Pages；不需要再把 zip 放进站点。
 
-- 把 zip 放 **Cloudflare R2**（10 GB 免费额度，出站免费），绑 `download.zhouxiyang.cn`，再把首页两个下载链接改成 R2 地址；
-- 或把 zip 放 **GitHub Releases**（单文件 2 GB），用 Release 下载地址；
-- 或直接用下面的 GitHub Pages 方案，两个 zip 都能放。
-
-### 7.3 方案 B：GitHub Pages（能直接带 183 MB）
+### 7.3 方案 B：GitHub Pages（当前使用）
 
 1. 新建仓库，把 `dist/` 里的内容推到仓库根目录；
 2. **Settings → Pages → Deploy from a branch**，选 `main` / `(root)`；
 3. 自定义域名填 `zhouxiyang.cn`（`CNAME` 文件已带），勾选 **Enforce HTTPS**；
 4. DNS：根域加 GitHub Pages 的 A 记录，`www` 加 CNAME 指向 `<用户名>.github.io`。
 
-限制：站点 1 GB 以内、单文件 100 MB 以内（两个 zip 都小于 100 MB），月流量 100 GB 软限制；国内访问速度不稳定。
+限制：站点 1 GB 以内、单文件 100 MB 以内，月流量 100 GB 软限制；国内访问速度不稳定，所以大文件走 OSS。
 
-### 7.4 方案 C：阿里云 OSS + CDN（国内最快，要备案）
+### 7.4 方案 C：阿里云 OSS + CDN（整站国内最快，要备案）
 
-- 绑定自定义域名必须 **ICP 备案**，个人可备，约 1–3 周；
-- 183 MB 存储每月几分钱，流量按量；
-- 适合确定长期投国内、愿意等备案的情况。
+- 整站放 OSS 并绑自定义域名必须 **ICP 备案**，个人可备，约 1–3 周；
+- 目前只把两个 Demo 放在 OSS（默认域名，免备案），见 7.5。
 
-### 7.5 上线检查清单
+### 7.5 Demo 下载托管（阿里云 OSS，当前）
+
+- Bucket：`zhouxiyang-downloads`，华东2（上海），**公共读**；
+- 对象：`downloads/山羊赌局demo.zip`（97,195,893 B）、`downloads/部落神话demo.zip`（92,125,000 B）；
+- 首页两个「下载 Demo」直接指向 OSS 默认域名，实测约 59 MB/s；
+- 更新 Demo：覆盖同名对象即可，链接不变；改对象名则要同步改 `index.html` 的两个外链；
+- 安全/费用：建议开 Referer 防盗链（白名单加 `zhouxiyang.cn`、`www.zhouxiyang.cn`，并允许空 Referer），并在「费用与成本 → 预算管理」设每月 ¥20 预警。
+
+### 7.6 上线检查清单
 
 - [ ] `.cn` 实名认证已通过（否则解析会被 serverHold）
 - [ ] `https://zhouxiyang.cn/` 与 `https://www.zhouxiyang.cn/` 都能打开，且只有一个 200、另一个 301
