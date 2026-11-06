@@ -48,7 +48,7 @@
 
   h2.sec {
     display: flex; align-items: baseline; gap: 3mm;
-    margin: 3.6mm 0 2mm; font-size: 9.4pt; font-weight: 700; letter-spacing: .08em; color: #111216;
+    margin: 3.2mm 0 1.8mm; font-size: 9.4pt; font-weight: 700; letter-spacing: .08em; color: #111216;
   }
   h2.sec .no { font-family: "Consolas", monospace; font-size: 6.6pt; letter-spacing: .1em; color: #b08a35; font-weight: 400; }
   h2.sec::after { content: ""; flex: 1; height: 1px; background: #e2ded3; transform: translateY(-1px); }
@@ -59,6 +59,9 @@
   .entry__title span { font-weight: 400; color: #77787f; font-size: 7.5pt; margin-left: 1.8mm; letter-spacing: .02em; }
   .entry__date { font-family: "Consolas", monospace; font-size: 7pt; color: #8a8b92; white-space: nowrap; }
   .entry__meta { margin-top: .7mm; font-size: 7.4pt; color: #9a7a2e; letter-spacing: .02em; }
+  .entry__desc { margin-top: .35mm; font-size: 7.9pt; line-height: 1.62; color: #3a3b42; }
+  .entry--campus { margin-bottom: 1.1mm; }
+  .entry--campus .entry__title { font-size: 8.9pt; }
   .entry ul { margin: 1mm 0 0; padding: 0; }
   .entry li {
     position: relative; padding-left: 3.2mm; margin-bottom: .55mm;
@@ -126,14 +129,13 @@
       <div class="hd__name">周西阳</div>
       <div class="hd__role">Game Designer · 2027</div>
       <div class="hd__tagline">
-        <span class="hd__intent">求职意向：游戏策划</span><span class="hd__intent-note">（系统与关卡方向）</span>。擅长把一个「好玩的感觉」拆成可验证的规则，
-        再用完整文档、可跑原型和 AI 快速验证来证明它成立。
+        <span class="hd__intent">求职意向：游戏策划</span><span class="hd__intent-note">（系统与关卡方向）</span>。<br />
+        擅长把「好玩」拆成可验证的规则，再用文档、原型与 AI 验证。
       </div>
     </div>
     <div class="hd__contact">
       <div><span class="k">TEL</span><b>17362275882</b></div>
       <div><span class="k">MAIL</span>1953324609@qq.com</div>
-      <div><span class="k">CITY</span>南京 · 苏州 · 上海 · 杭州 · 济南</div>
       <div><span class="k">SITE</span>zhouxiyang.cn</div>
       <div><span class="k">STATUS</span>2027 届 · 可实习</div>
     </div>
@@ -200,7 +202,33 @@
         </ul>
       </div>
 
-      <h2 class="sec"><span class="no">03</span>荣誉与证书</h2>
+      <h2 class="sec"><span class="no">03</span>校园经历</h2>
+
+      <div class="entry entry--campus">
+        <div class="entry__top">
+          <div class="entry__title">工作室负责人</div>
+          <div class="entry__date">2023.09 — 2025.06</div>
+        </div>
+        <p class="entry__desc">负责工作室各项活动组织、项目安排、赛事选拔人员等。</p>
+      </div>
+
+      <div class="entry entry--campus">
+        <div class="entry__top">
+          <div class="entry__title">网络安全动画短片<span>动画脚本 / 动画制作</span></div>
+          <div class="entry__date">2024.10 — 2024.12</div>
+        </div>
+        <p class="entry__desc">参与学校网络安全中心项目，负责动画脚本及部分动画制作。</p>
+      </div>
+
+      <div class="entry entry--campus">
+        <div class="entry__top">
+          <div class="entry__title">虚拟月球场景平台<span>产品 UI / 交互设计</span></div>
+          <div class="entry__date">2026.02 — 2026.05</div>
+        </div>
+        <p class="entry__desc">参与教师课题开发，负责产品 UI 及交互设计。</p>
+      </div>
+
+      <h2 class="sec"><span class="no">04</span>荣誉与证书</h2>
       <div class="entry">
         <ul>
           <li>2023 第二十届高等数学竞赛 <b>三等奖</b></li>
@@ -208,28 +236,6 @@
           <li>2024 江苏省职业技能大赛「数字化产品设计与开发」<b>二等奖</b></li>
           <li>2025 届苏州职业技术大学「<b>优秀毕业生</b>」</li>
         </ul>
-      </div>
-
-      <h2 class="sec"><span class="no">04</span>作品集索引</h2>
-      <div class="idx">
-        <span class="idx__k">01 TEARDOWN</span>
-        <span class="idx__t">拆解案 <span>《恶魔轮盘》系统拆解</span></span>
-        <span class="idx__m">6,200 字</span>
-      </div>
-      <div class="idx">
-        <span class="idx__k">02 DESIGN</span>
-        <span class="idx__t">策划案 <span>《山羊赌局》完整 GDD /《部落神话》策划案</span></span>
-        <span class="idx__m">2 篇 · 2.3 万字</span>
-      </div>
-      <div class="idx">
-        <span class="idx__k">03 PLAYABLE</span>
-        <span class="idx__t">游戏 Demo <span>《山羊赌局》《部落神话》可玩构建</span></span>
-        <span class="idx__m">Windows · 2 个</span>
-      </div>
-      <div class="idx">
-        <span class="idx__k">04 BUSINESS</span>
-        <span class="idx__t">商业表现 <span>Steam 审核中 / Game Jam 第一名</span></span>
-        <span class="idx__m">待上线</span>
       </div>
     </main>
 
